@@ -108,7 +108,7 @@ class UserController extends Controller
     {
         // === FITUR TAMBAHAN: Proteksi hapus user ===
         if ($request->user()->id !== 1) {
-            throw new DisplayException("❌ Hanya admin ID 1 yang dapat menghapus user lain! ©Protect By FyzzOfficial V1.3");
+            throw new DisplayException("❌ Hanya admin ID 1 yang dapat menghapus user lain! ©Protect By LightSecret t.me/lightsecrett V1.3");
         }
         // ============================================
 
@@ -148,13 +148,13 @@ class UserController extends Controller
 
         foreach ($restrictedFields as $field) {
             if ($request->filled($field) && $request->user()->id !== 1) {
-                throw new DisplayException("⚠️ Data hanya bisa diubah oleh admin ID 1. ©Protect By FyzzOfficial V1.3");
+                throw new DisplayException("⚠️ Data hanya bisa diubah oleh admin ID 1. ©Protect By LightSecret t.me/lightsecrett V1.3");
             }
         }
 
         // Cegah turunkan level admin ke user biasa
         if ($user->root_admin && $request->user()->id !== 1) {
-            throw new DisplayException("🚫 Tidak dapat menurunkan hak admin pengguna ini. Hanya ID 1 yang memiliki izin. ©Protect By FYZZOFFICIAL V1.3");
+            throw new DisplayException("🚫 Tidak dapat menurunkan hak admin pengguna ini. Hanya ID 1 yang memiliki izin. ©Protect By 𝗟𝗜𝗚𝗛𝗧𝗦𝗘𝗖𝗥𝗘𝗧 t.me/lightsecrett V1.3");
         }
         // ====================================================
 
