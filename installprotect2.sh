@@ -18,28 +18,27 @@ chmod 755 "$(dirname "$REMOTE_PATH")"
 cat > "$REMOTE_PATH" <<'EOF'
 <?php
 
-namespace PterodactylHttpControllersAdmin;
+namespace Pterodactyl\Http\Controllers\Admin;
 
-use IlluminateViewView;
-use IlluminateHttpRequest;
-use PterodactylModelsUser;
-use PterodactylModelsModel;
-use IlluminateSupportCollection;
-use IlluminateHttpRedirectResponse;
-use PrologueAlertsAlertsMessageBag;
-use SpatieQueryBuilderQueryBuilder;
-use IlluminateViewFactory as ViewFactory;
-use PterodactylExceptionsDisplayException;
-use PterodactylHttpControllersController;
-use IlluminateContractsTranslationTranslator;
-use PterodactylServicesUsersUserUpdateService;
-use PterodactylTraitsHelpersAvailableLanguages;
-use PterodactylServicesUsersUserCreationService;
-use PterodactylServicesUsersUserDeletionService;
-use PterodactylHttpRequestsAdminUserFormRequest;
-use PterodactylHttpRequestsAdminNewUserFormRequest;
-use PterodactylContractsRepositoryUserRepositoryInterface;
-
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Pterodactyl\Models\User;
+use Pterodactyl\Models\Model;
+use Illuminate\Support\Collection;
+use Illuminate\Http\RedirectResponse;
+use Prologue\Alerts\AlertsMessageBag;
+use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\View\Factory as ViewFactory;
+use Pterodactyl\Exceptions\DisplayException;
+use Pterodactyl\Http\Controllers\Controller;
+use Illuminate\Contracts\Translation\Translator;
+use Pterodactyl\Services\Users\UserUpdateService;
+use Pterodactyl\Traits\Helpers\AvailableLanguages;
+use Pterodactyl\Services\Users\UserCreationService;
+use Pterodactyl\Services\Users\UserDeletionService;
+use Pterodactyl\Http\Requests\Admin\UserFormRequest;
+use Pterodactyl\Http\Requests\Admin\NewUserFormRequest;
+use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
 class UserController extends Controller
 {
     use AvailableLanguages;
