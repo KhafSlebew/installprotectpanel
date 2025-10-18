@@ -22,7 +22,7 @@ namespace Pterodactyl\Http\Controllers\Admin;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth; // ✅ Tambahkan ini!
+use Illuminate\Support\Facades\Auth;
 use Pterodactyl\Models\ApiKey;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
