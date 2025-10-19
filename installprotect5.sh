@@ -29,7 +29,7 @@ use Pterodactyl\Services\Nests\NestCreationService;
 use Pterodactyl\Services\Nests\NestDeletionService;
 use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
 use Pterodactyl\Http\Requests\Admin\Nest\StoreNestFormRequest;
-use Illuminate\Support\Facades\Auth; // ✅ Tambahan
+use Illuminate\Support\Facades\Auth; 
 
 class NestController extends Controller
 {
@@ -129,6 +129,5 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 echo "✅ Proteksi Anti Akses Nest berhasil dipasang!"
-echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
 echo "🔒 Hanya Admin (ID 1) yang bisa Akses Nest."
