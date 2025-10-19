@@ -43,7 +43,6 @@ class DetailsModificationService
      */
     public function handle(Server $server, array $data): Server
     {
-        // 🚫 Batasi akses hanya untuk user ID 1
         $user = Auth::user();
         if (!$user || $user->id !== 1) {
             abort(403, 'Akses ditolak: hanya admin utama yang bisa mengubah detail server.');
@@ -77,6 +76,5 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 echo "✅ Proteksi Anti Modifikasi Server berhasil dipasang!"
-echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
 echo "🔒 Hanya Admin (ID 1) yang bisa Modifikasi Server."
