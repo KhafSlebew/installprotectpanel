@@ -213,5 +213,4 @@ EOF
 
 chmod 644 "$REMOTE_PATH"
 echo "✅ Proteksi UserController.php berhasil dipasang!"
-echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH"
