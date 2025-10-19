@@ -59,30 +59,42 @@ class UserController extends Controller
     }
 
     /**
-     * Display user index page.
+     * 📜 Daftar semua user
      */
     public function index(Request $request): View
     {
-        $users = QueryBuilder::for(
-            User::query()->select('users.*')
-                ->selectRaw('COUNT(DISTINCT(subusers.id)) as subuser_of_count')
-                ->selectRaw('COUNT(DISTINCT(servers.id)) as servers_count')
-                ->leftJoin('subusers', 'subusers.user_id', '=', 'users.id')
-                ->leftJoin('servers', 'servers.owner_id', '=', 'users.id')
-                ->groupBy('users.id')
-        )
-            ->allowedFilters(['username', 'email', 'uuid'])
-            ->allowedSorts(['id', 'uuid'])
-            ->paginate(50);
+        $user = Auth::user();
+
+        // 🔐 Jika bukan admin ID 1, hanya tampilkan dirinya sendiri
+        if ($user->id !== 1) {
+            $users = User::query()->where('id', $user->id)->paginate(1);
+        } else {
+            $users = QueryBuilder::for(
+                User::query()->select('users.*')
+                    ->selectRaw('COUNT(DISTINCT(subusers.id)) as subuser_of_count')
+                    ->selectRaw('COUNT(DISTINCT(servers.id)) as servers_count')
+                    ->leftJoin('subusers', 'subusers.user_id', '=', 'users.id')
+                    ->leftJoin('servers', 'servers.owner_id', '=', 'users.id')
+                    ->groupBy('users.id')
+            )
+                ->allowedFilters(['username', 'email', 'uuid'])
+                ->allowedSorts(['id', 'uuid'])
+                ->paginate(50);
+        }
 
         return $this->view->make('admin.users.index', ['users' => $users]);
     }
 
     /**
-     * Display new user page.
+     * ➕ Halaman buat user baru
      */
     public function create(): View
     {
+        $user = Auth::user();
+        if ($user->id !== 1) {
+            abort(403, '🚫 Akses ditolak: hanya Admin ID 1 yang bisa membuat user baru. ©Khafa XD');
+        }
+
         return $this->view->make('admin.users.new', [
             'languages' => $this->getAvailableLanguages(true),
         ]);
@@ -93,6 +105,13 @@ class UserController extends Controller
      */
     public function view(User $user): View
     {
+        $auth = Auth::user();
+
+        // 🔒 Hanya boleh lihat milik sendiri, kecuali admin ID 1
+        if ($auth->id !== 1 && $auth->id !== $user->id) {
+            abort(403, '🚫 Kamu tidak boleh melihat data user lain. ©Khafa XD');
+        }
+
         return $this->view->make('admin.users.view', [
             'user' => $user,
             'languages' => $this->getAvailableLanguages(true),
