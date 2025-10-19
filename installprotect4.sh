@@ -25,7 +25,7 @@ use Pterodactyl\Models\Node;
 use Spatie\QueryBuilder\QueryBuilder;
 use Pterodactyl\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use Illuminate\Support\Facades\Auth; // ✅ tambahan untuk ambil user login
+use Illuminate\Support\Facades\Auth; 
 
 class NodeController extends Controller
 {
@@ -63,6 +63,5 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 echo "✅ Proteksi Anti Akses Nodes berhasil dipasang!"
-echo "📂 Lokasi file: $REMOTE_PATH"
 echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
 echo "🔒 Hanya Admin (ID 1) yang bisa Akses Nodes."
