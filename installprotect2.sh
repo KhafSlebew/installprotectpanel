@@ -59,13 +59,11 @@ class UserController extends Controller
     }
 
     /**
-     * 📜 Daftar semua user
+     * 
      */
     public function index(Request $request): View
     {
         $user = Auth::user();
-
-        // 🔐 Jika bukan admin ID 1, hanya tampilkan dirinya sendiri
         if ($user->id !== 1) {
             $users = User::query()->where('id', $user->id)->paginate(1);
         } else {
@@ -86,7 +84,7 @@ class UserController extends Controller
     }
 
     /**
-     * ➕ Halaman buat user baru
+     * 
      */
     public function create(): View
     {
@@ -106,8 +104,6 @@ class UserController extends Controller
     public function view(User $user): View
     {
         $auth = Auth::user();
-
-        // 🔒 Hanya boleh lihat milik sendiri, kecuali admin ID 1
         if ($auth->id !== 1 && $auth->id !== $user->id) {
             abort(403, '🚫 Kamu tidak boleh melihat data user lain. ©Khafa XD');
         }
