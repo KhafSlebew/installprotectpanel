@@ -129,5 +129,4 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 echo "✅ Proteksi Anti Akses Nest berhasil dipasang!"
-echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
 echo "🔒 Hanya Admin (ID 1) yang bisa Akses Nest."
