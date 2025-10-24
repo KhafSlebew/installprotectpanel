@@ -76,5 +76,4 @@ EOF
 chmod 644 "$REMOTE_PATH"
 
 echo "✅ Proteksi Anti Modifikasi Server berhasil dipasang!"
-echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
 echo "🔒 Hanya Admin (ID 1) yang bisa Modifikasi Server."
